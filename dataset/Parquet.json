@@ -5,6 +5,14 @@
 			"referenceName": "AzureBlobStorageDL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Nombre_tabla": {
+				"type": "string"
+			},
+			"Ruta_destino": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
