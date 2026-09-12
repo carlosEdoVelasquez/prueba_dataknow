@@ -100,7 +100,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"Nombre_archivo": {
-											"value": "@item().nombre_archivo_destino",
+											"value": "@concat(item().nombre_archivo_destino,'_',variables('fecha_actual'))",
 											"type": "Expression"
 										},
 										"Ruta_destino": {
