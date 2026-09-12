@@ -29,7 +29,7 @@
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@concat(dataset().Ruta_destino,dataset().Carpeta_destino)",
+					"value": "@dataset().Ruta_destino",
 					"type": "Expression"
 				},
 				"container": {
