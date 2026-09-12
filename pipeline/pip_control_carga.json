@@ -145,7 +145,34 @@
 					"scripts": [
 						{
 							"type": "Query",
-							"text": "insert into [dbo].[TablaControlCarga]\nselect b.[esquema_origen]\n      ,b.[nombre_tabla_origen]\n      ,b.[ruta_destino]\n      ,b.[carpeta_destino]\n      ,b.[nombre_archivo_destino]\n\t  ,'activo' as estado_proceso\n\t  ,getdate()\n  from [dbo].[TablaControlCarga] a\n\tright join [stage].[Tbl_tmp_ControlCarga] b\n\ton a.[esquema_origen] = b.[esquema_origen]\n\tand a.[nombre_tabla_origen] = b.[nombre_tabla_origen]\nwhere a.[nombre_tabla_origen] is null;\n\ntruncate table [stage].[Tbl_tmp_ControlCarga];"
+							"text": "MERGE dbo.TablaControlCarga AS T\nUSING stage.Tbl_tmp_ControlCarga AS S\nON T.esquema_origen = S.esquema_origen\n   AND T.nombre_tabla_origen = S.nombre_tabla_origen\n\n when matched AND (\n T.ruta_destino <> S.ruta_destino or\n T.carpeta_destino <> S.carpeta_destino or\n T.nombre_archivo_destino <> S.nombre_archivo_destino\n ) then\n\n  update set    \n      ruta_destino = S.ruta_destino\n      ,carpeta_destino = S.carpeta_destino\n      ,nombre_archivo_destino = S.nombre_archivo_destino\n      ,fecha_actualizacion = getdate()\n\nWHEN NOT MATCHED BY TARGET THEN\n    INSERT (esquema_origen,\n            nombre_tabla_origen,\n            ruta_destino,\n            carpeta_destino,\n            nombre_archivo_destino,\n            estado_proceso,\n            fecha_actualizacion)\n    VALUES (S.esquema_origen,\n            S.nombre_tabla_origen,\n            S.ruta_destino,\n            S.carpeta_destino,\n            S.nombre_archivo_destino,\n            'activo',\n            GETDATE());"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Actualiza estado proceso",
+				"type": "Script",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query"
 						}
 					],
 					"scriptBlockExecutionTimeout": "02:00:00"
