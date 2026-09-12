@@ -31,7 +31,14 @@
 			{
 				"name": "ForEach carga archivos bronze",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
@@ -93,7 +100,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "select TABLE_SCHEMA, TABLE_NAME\nfrom INFORMATION_SCHEMA.TABLES",
+							"value": "select concat(TABLE_SCHEMA,'.', TABLE_NAME)\nfrom INFORMATION_SCHEMA.TABLES",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
@@ -121,9 +128,18 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "listarTablas",
+					"value": ""
+				}
 			}
 		],
+		"variables": {
+			"listarTablas": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
