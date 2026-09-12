@@ -111,7 +111,7 @@
 											"value": "@item().carpeta_destino",
 											"type": "Expression"
 										},
-										"contenedor": "Bronze"
+										"contenedor": "bronze"
 									}
 								}
 							]
