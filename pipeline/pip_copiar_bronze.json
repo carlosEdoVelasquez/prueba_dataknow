@@ -78,7 +78,7 @@
 				}
 			},
 			{
-				"name": "Lookup1",
+				"name": "LookupListarTablas",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -115,7 +115,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "LookupListarTablas",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -128,7 +128,10 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "listarTablas",
-					"value": ""
+					"value": {
+						"value": "@concat(last(activity('LookupListarTablas').output.value).TABLE_SCHEMA,'.',last(activity('LookupListarTablas').output.value).TABLE_NAME)",
+						"type": "Expression"
+					}
 				}
 			}
 		],
