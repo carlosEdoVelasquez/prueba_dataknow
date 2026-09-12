@@ -117,6 +117,39 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "Ejecuta insercion de datos",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Copy data control carga",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "insert into [dbo].[TablaControlCarga]\nselect b.[esquema_origen]\n      ,b.[nombre_tabla_origen]\n      ,b.[ruta_destino]\n      ,b.[carpeta_destino]\n      ,b.[nombre_archivo_destino]\n\t  ,'activo' as estado_proceso\n\t  ,getdate()\n  from [dbo].[TablaControlCarga] a\n\tright join [stage].[Tbl_tmp_ControlCarga] b\n\ton a.[esquema_origen] = b.[esquema_origen]\n\tand a.[nombre_tabla_origen] = b.[nombre_tabla_origen]\nwhere a.[nombre_tabla_origen] is null;"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
 			}
 		],
 		"annotations": []
