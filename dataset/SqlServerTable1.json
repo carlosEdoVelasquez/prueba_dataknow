@@ -5,6 +5,14 @@
 			"referenceName": "SqlServerlocalhost",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Esquema_origen": {
+				"type": "string"
+			},
+			"Tabla_origen": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": []
