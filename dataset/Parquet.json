@@ -6,10 +6,16 @@
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
-			"Nombre_tabla": {
+			"Nombre_archivo": {
 				"type": "string"
 			},
 			"Ruta_destino": {
+				"type": "string"
+			},
+			"Contenedor_destino": {
+				"type": "string"
+			},
+			"Carpeta_destino": {
 				"type": "string"
 			}
 		},
