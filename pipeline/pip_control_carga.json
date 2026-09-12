@@ -28,12 +28,76 @@
 					},
 					"sink": {
 						"type": "AzureSqlSink",
+						"preCopyScript": "truncate table stage.Tbl_tmp_ControlCarga;",
 						"writeBehavior": "insert",
-						"sqlWriterUseTableLock": false
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "esquema_origen",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "esquema_origen",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre_tabla_origen",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "nombre_tabla_origen",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "ruta_destino",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "ruta_destino",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "carpeta_destino",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "carpeta_destino",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "nombre_archivo_destino",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "nombre_archivo_destino",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
 						"typeConversion": true,
 						"typeConversionSettings": {
 							"allowDataTruncation": true,
