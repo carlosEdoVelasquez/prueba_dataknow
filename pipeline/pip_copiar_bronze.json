@@ -157,7 +157,7 @@
 				"type": "SetVariable",
 				"dependsOn": [
 					{
-						"activity": "LookupListarTablas",
+						"activity": "Set variable calcular fecha",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -175,10 +175,37 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set variable calcular fecha",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "LookupListarTablas",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "fecha_actual",
+					"value": {
+						"value": "@formatDateTime(addToTime(utcNow(),-5,'yyyymmdd' ))",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
 			"listarTablas": {
+				"type": "String"
+			},
+			"fecha_actual": {
 				"type": "String"
 			}
 		},
