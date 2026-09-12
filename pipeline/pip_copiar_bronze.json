@@ -97,7 +97,22 @@
 							"outputs": [
 								{
 									"referenceName": "Parquet",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Nombre_archivo": {
+											"value": "@item().nombre_archivo_destino",
+											"type": "Expression"
+										},
+										"Ruta_destino": {
+											"value": "@item().ruta_destino",
+											"type": "Expression"
+										},
+										"Contenedor_destino": "bronze",
+										"Carpeta_destino": {
+											"value": "@item().carpeta_destino",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
