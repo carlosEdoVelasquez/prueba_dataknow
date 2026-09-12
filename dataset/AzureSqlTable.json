@@ -1,0 +1,63 @@
+{
+	"name": "AzureSqlTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "esquema_origen",
+				"type": "nvarchar"
+			},
+			{
+				"name": "nombre_tabla_origen",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ruta_destino",
+				"type": "nvarchar"
+			},
+			{
+				"name": "carpeta_destino",
+				"type": "nvarchar"
+			},
+			{
+				"name": "nombre_archivo_destino",
+				"type": "nvarchar"
+			},
+			{
+				"name": "cantidad_registros",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "estado_proceso",
+				"type": "nvarchar"
+			},
+			{
+				"name": "fecha_registros",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "fecha_actualizacion",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "",
+			"table": ""
+		}
+	}
+}
