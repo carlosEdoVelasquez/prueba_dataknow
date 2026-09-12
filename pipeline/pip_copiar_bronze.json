@@ -99,10 +99,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
-						"sqlReaderQuery": {
-							"value": "select concat(TABLE_SCHEMA,'.', TABLE_NAME)\nfrom INFORMATION_SCHEMA.TABLES",
-							"type": "Expression"
-						},
+						"sqlReaderQuery": "select TABLE_SCHEMA, TABLE_NAME\nfrom INFORMATION_SCHEMA.TABLES",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
