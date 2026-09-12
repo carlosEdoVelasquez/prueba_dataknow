@@ -12,10 +12,10 @@
 			"Ruta_destino": {
 				"type": "string"
 			},
-			"Contenedor_destino": {
+			"Carpeta_destino": {
 				"type": "string"
 			},
-			"Carpeta_destino": {
+			"contenedor": {
 				"type": "string"
 			}
 		},
@@ -23,7 +23,19 @@
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobStorageLocation"
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Nombre_archivo",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().Ruta_destino,dataset().Carpeta_destino)",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().contenedor",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": null
 		},
