@@ -56,8 +56,8 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "",
-			"table": ""
+			"schema": "stage",
+			"table": "Tbl_tmp_ControlCarga"
 		}
 	}
 }
