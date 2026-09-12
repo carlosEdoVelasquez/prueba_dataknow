@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pip_control_carga",
 	"properties": {
 		"activities": [
 			{
