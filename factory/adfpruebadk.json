@@ -1,0 +1,15 @@
+{
+	"name": "adfpruebadk",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a2383679-6335-4dc0-a392-049861b5c8a0",
+		"tenantId": "0be6a1e8-b822-4f63-84e9-98326a85402a"
+	}
+}
