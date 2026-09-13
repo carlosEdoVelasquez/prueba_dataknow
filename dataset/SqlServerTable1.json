@@ -7,7 +7,11 @@
 		},
 		"annotations": [],
 		"type": "SqlServerTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TB_CLIENTES_CORE"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
