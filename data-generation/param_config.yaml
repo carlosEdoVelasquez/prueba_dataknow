@@ -1,0 +1,47 @@
+
+seed: 20260909
+
+global:
+  country: "CO"
+  reference_date: "2025-12-31"
+  start_date: "2025-01-01"
+  end_date: "2025-12-31"
+
+tables:
+
+  TB_CLIENTES_CORE:
+
+    volume: 10000
+
+    null_rates:
+      score_buro: 0.05
+      ciudad_res: 0.05
+
+
+    anomalies:
+      duplicate_documents: 20
+      future_birth_dates: 10
+
+
+
+  TB_PRODUCTOS_CAT:
+    volume: 50
+
+    anomalies:
+      invalid_interest_rates: 2
+
+
+
+  TB_MOV_FINANCIEROS:
+    volume: 500000
+
+
+  TB_OBLIGACIONES:
+    volume: 30000
+
+  TB_SUCURSALES_RED:
+    volume: 200
+
+  TB_COMISIONES_LOG :
+    volume: 80000
+
