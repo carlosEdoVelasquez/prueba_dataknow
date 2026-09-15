@@ -1,2 +1,8 @@
+# Auto: Carlos Velásquez
+# Carpetas creadas:
+# - data-generation
+# - pipelines
+# - orchestacion
+# - docs
+# - 
 
-# 1. Descripción del proyecto
