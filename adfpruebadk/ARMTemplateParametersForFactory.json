@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfpruebadk"
+		},
+		"AzureBlobStorageDL_connectionString": {
+			"value": "DefaultEndpointsProtocol=https;AccountName=storagepruebadk;EndpointSuffix=core.windows.net;"
+		},
+		"AzureDatabricksConnect_accessToken": {
+			"value": ""
+		},
+		"AzureDatabricksConnect_properties_typeProperties_existingClusterId": {
+			"value": "0915-010225-cxm96ug2"
+		},
+		"AzureKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://tblkeyvault.vault.azure.net/"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_server": {
+			"value": "srv-pruebadk.database.windows.net"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_database": {
+			"value": "db-dwhfinbank"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_userName": {
+			"value": "DK_administrador"
+		},
+		"SqlServerlocalhost_properties_typeProperties_server": {
+			"value": "localhost"
+		},
+		"SqlServerlocalhost_properties_typeProperties_database": {
+			"value": "db_FinBank"
+		},
+		"SqlServerlocalhost_properties_typeProperties_userName": {
+			"value": "sa"
+		}
+	}
+}
