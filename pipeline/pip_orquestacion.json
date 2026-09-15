@@ -1,5 +1,5 @@
 {
-	"name": "pip_copiar_bronze",
+	"name": "pip_orquestacion",
 	"properties": {
 		"activities": [
 			{
@@ -198,6 +198,114 @@
 						"value": "@formatDateTime(utcNow(), 'yyyyMMdd')",
 						"type": "Expression"
 					}
+				}
+			},
+			{
+				"name": "Crear_tablas",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "ForEach carga archivos bronze",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Prueba_Dataknow/notebooks/00_creacion_estructura"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksConnect",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "crear reglas calidad de datos",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Crear_tablas",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Prueba_Dataknow/notebooks/01_calidad_datos"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksConnect",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Bronze to silver",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "crear reglas calidad de datos",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Prueba_Dataknow/notebooks/02_bronze_to_silver"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksConnect",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Silver to gold",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "Bronze to silver",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Prueba_Dataknow/notebooks/03_silver_to_gold"
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricksConnect",
+					"type": "LinkedServiceReference"
 				}
 			}
 		],
